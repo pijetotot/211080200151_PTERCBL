@@ -31,7 +31,7 @@ $mahasiswa = query("SELECT * FROM mobil");
 
 <body>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <ul>
             <li>
                 <label for="id_barang">Masukkan ID Mobil</label>
@@ -50,6 +50,10 @@ $mahasiswa = query("SELECT * FROM mobil");
                 <input type="text" name="harga" id="harga">
             </li>
             <li>
+                <label for="image">Upload Gambar</label>
+                <input type="file" name="image" id="image">
+            </li>
+            <li>
                 <button type="submit" name="submit">Submit</button>
             </li>
         </ul>
@@ -61,6 +65,7 @@ $mahasiswa = query("SELECT * FROM mobil");
             <th>Brand</th>
             <th>Type</th>
             <th>Price (USD)</th>
+            <th>Gambar</th>
         </tr>
         <?php foreach ($mahasiswa as $data) : ?>
             <tr>
@@ -68,6 +73,7 @@ $mahasiswa = query("SELECT * FROM mobil");
                 <td><?= $data['brand'] ?></td>
                 <td><?= $data['type'] ?></td>
                 <td><?= $data['price'] ?></td>
+                <td><img src="data:image/jpeg;base64,<?= htmlspecialchars($data['image']) ?>" alt="" style="width: 200px; height: auto;"></td>
             </tr>
         <?php endforeach; ?>
     </table>
